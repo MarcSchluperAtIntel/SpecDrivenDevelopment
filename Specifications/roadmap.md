@@ -24,6 +24,6 @@ Now only add the Dashboard page
 
 ## Increment 3
 
-Now only add the Recipe page
+Now only add the Recipes page
 
 

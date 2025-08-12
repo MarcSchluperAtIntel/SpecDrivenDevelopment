@@ -21,6 +21,12 @@ The Products page allows users to build and maintain a comprehensive database of
 
 The Stores page enables users to add, modify, and remove stores from their shopping ecosystem, providing context for product availability tracking.
 
+### Recipes 
+
+**Purpose**: Maintain a collection of recipes and their ingredients. 
+
+The Recipes Page displays all defined recipes in a table, each with their ingredients in a separate column.  Editing a Recipe enables the user to define the recipe name and what products are needed for the recipe (as ingredients). 
+
 ## UI Test Specifications
 
 ### UI Interaction
@@ -58,6 +64,14 @@ Implement proper form validation with clear visual feedback. All form fields sho
 12. **Store Modification**: Existing store information can be updated to reflect name changes, closures, or other relevant details that affect shopping planning.
 
 13. **Store Removal**: Users can remove stores from their system, with appropriate warnings about impact on product availability data.
+
+### Recipes Page Tests
+
+14. **Recipe Creation**: Users can add new recipes by specifying the recipe name, how many people it serves, and selecting which products it requires.
+
+15. **Products Required**: During recipe creation and editing, users can select multiple products that are ingredients. Upon updating the recipe, all its ingredients are persisted.
+
+16. **Filter by Product**: Users can select a product and see what recipes use the selected product as ingredient.
 
 ## Core User Workflow
 
