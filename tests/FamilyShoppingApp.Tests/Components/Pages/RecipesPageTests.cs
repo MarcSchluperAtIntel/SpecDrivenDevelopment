@@ -203,15 +203,32 @@ public class RecipesPageTests : TestContext, IDisposable
         var addButton = component.Find("[data-testid='create-recipe-button']");
         addButton.Click();
 
-        // Act - Submit empty form
+        // Make sure Save button is disabled
         var saveButton = component.Find("[data-testid='save-recipe-button']");
+        Assert.True(saveButton.HasAttribute("disabled"));
+
+        // Enter Name
+        var nameInput = component.Find("[data-testid='recipe-name-input']");
+        nameInput.Change("Test Recipe");
+
+        saveButton = component.Find("[data-testid='save-recipe-button']");
+        Assert.False(saveButton.HasAttribute("disabled"));
+
+        // Erase Name
+        nameInput.Change("");
+
+        var servingsInput = component.Find("[data-testid='servings-input']");
+        servingsInput.Change("0");
+
+        // Act - Submit empty form
+        saveButton = component.Find("[data-testid='save-recipe-button']");
         saveButton.Click();
 
         // Assert
-        var nameInput = component.Find("[data-testid='recipe-name-input']");
+        nameInput = component.Find("[data-testid='recipe-name-input']");
         Assert.True(nameInput.ClassList.Contains("is-invalid"));
         
-        var servingsInput = component.Find("[data-testid='servings-input']");
+        servingsInput = component.Find("[data-testid='servings-input']");
         Assert.True(servingsInput.ClassList.Contains("is-invalid"));
     }
 
@@ -420,7 +437,8 @@ public class RecipesPageTests : TestContext, IDisposable
         filterSelect.Change(product.Id.ToString());
 
         // Act - Clear filter
-        filterSelect.Change("");
+        filterSelect.Change("0");
+        component.WaitForAssertion(() => Assert.Contains("All recipes", component.Markup));
 
         // Assert
         component.WaitForAssertion(() =>
