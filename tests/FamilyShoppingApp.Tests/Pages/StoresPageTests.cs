@@ -9,6 +9,7 @@ using FamilyShoppingApp.ViewModels;
 using FamilyShoppingApp.Models;
 using AngleSharp.Dom;
 using Moq;
+using FamilyShoppingApp.Tests.Helpers;
 
 namespace FamilyShoppingApp.Tests.Pages;
 
@@ -252,25 +253,5 @@ public class StoresPageTests : TestContext
             _context.Dispose();
         }
         base.Dispose(disposing);
-    }
-}
-
-public class TestDbContextFactory : IDbContextFactory<ApplicationDbContext>
-{
-    private readonly DbContextOptions<ApplicationDbContext> _options;
-
-    public TestDbContextFactory(DbContextOptions<ApplicationDbContext> options)
-    {
-        _options = options;
-    }
-
-    public ApplicationDbContext CreateDbContext()
-    {
-        return new ApplicationDbContext(_options);
-    }
-    
-    public async Task<ApplicationDbContext> CreateDbContextAsync()
-    {
-        return await Task.FromResult(new ApplicationDbContext(_options));
     }
 }

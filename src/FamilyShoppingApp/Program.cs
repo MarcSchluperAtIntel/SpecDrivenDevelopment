@@ -14,6 +14,7 @@ builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
 
 // Add custom services
 builder.Services.AddScoped<StoreService>();
+builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ExceptionHandlerService>();
 
 var app = builder.Build();
