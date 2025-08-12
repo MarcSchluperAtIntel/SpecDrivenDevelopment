@@ -34,10 +34,14 @@ public class DashboardPageTests : TestContext, IDisposable
     }
 
     [Fact]
-    public async Task Dashboard_RendersCorrectly_WhenEmpty()
+    public void Dashboard_RendersCorrectly_WhenEmpty()
     {
         // Act
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
 
         // Assert
         Assert.Contains("Shopping Dashboard", component.Markup);
@@ -49,10 +53,14 @@ public class DashboardPageTests : TestContext, IDisposable
     }
 
     [Fact]
-    public async Task ShowAddForm_DisplaysAddProductForm_WhenClicked()
+    public void ShowAddForm_DisplaysAddProductForm_WhenClicked()
     {
         // Arrange
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
 
         // Act
         var addButton = component.Find("[data-testid='show-add-form-button']");
@@ -82,6 +90,10 @@ public class DashboardPageTests : TestContext, IDisposable
         await _context.SaveChangesAsync();
 
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
         var addButton = component.Find("[data-testid='show-add-form-button']");
         addButton.Click();
 
@@ -101,10 +113,14 @@ public class DashboardPageTests : TestContext, IDisposable
     }
 
     [Fact]
-    public async Task AddProductForm_ShowsValidation_WhenProductNotSelected()
+    public void AddProductForm_ShowsValidation_WhenProductNotSelected()
     {
         // Arrange
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
         var addButton = component.Find("[data-testid='show-add-form-button']");
         addButton.Click();
 
@@ -128,6 +144,10 @@ public class DashboardPageTests : TestContext, IDisposable
         await _context.SaveChangesAsync();
 
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
         var addButton = component.Find("[data-testid='show-add-form-button']");
         addButton.Click();
 
@@ -154,10 +174,14 @@ public class DashboardPageTests : TestContext, IDisposable
     }
 
     [Fact]
-    public async Task CancelAddForm_HidesForm_WhenClicked()
+    public void CancelAddForm_HidesForm_WhenClicked()
     {
         // Arrange
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
         var addButton = component.Find("[data-testid='show-add-form-button']");
         addButton.Click();
 
@@ -195,6 +219,10 @@ public class DashboardPageTests : TestContext, IDisposable
         await _context.SaveChangesAsync();
 
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
 
         // Act - Increment quantity
         var incrementButton = component.Find("[data-testid='increment-button']");
@@ -238,6 +266,10 @@ public class DashboardPageTests : TestContext, IDisposable
         await _context.SaveChangesAsync();
 
         var component = RenderComponent<Dashboard>();
+        component.WaitForAssertion(() =>
+        {
+            Assert.Contains("Shopping Dashboard", component.Markup);
+        });
 
         // Act
         var markPurchasedButton = component.Find("[data-testid='mark-purchased-button']");
@@ -335,7 +367,7 @@ public class DashboardPageTests : TestContext, IDisposable
     }
 
     [Fact]
-    public async Task QuickLinks_ProvideNavigationToOtherPages()
+    public void QuickLinks_ProvideNavigationToOtherPages()
     {
         // Arrange
         var component = RenderComponent<Dashboard>();
