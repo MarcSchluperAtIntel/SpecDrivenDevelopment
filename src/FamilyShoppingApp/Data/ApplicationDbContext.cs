@@ -12,6 +12,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Recipe> Recipes { get; set; }
     public DbSet<ProductStore> ProductStores { get; set; }
     public DbSet<RecipeProduct> RecipeProducts { get; set; }
+    public DbSet<ShoppingItem> ShoppingItems { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,5 +45,11 @@ public class ApplicationDbContext : DbContext
             .HasOne(rp => rp.Product)
             .WithMany(p => p.RecipeProducts)
             .HasForeignKey(rp => rp.ProductId);
+            
+        // Configure ShoppingItem relationship
+        modelBuilder.Entity<ShoppingItem>()
+            .HasOne(si => si.Product)
+            .WithMany()
+            .HasForeignKey(si => si.ProductId);
     }
 }
